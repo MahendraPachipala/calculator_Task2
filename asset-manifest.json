@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/calculator_Task2/static/css/main.a41d7c85.css",
+    "main.js": "/calculator_Task2/static/js/main.d01b1101.js",
+    "static/js/787.a174f9e5.chunk.js": "/calculator_Task2/static/js/787.a174f9e5.chunk.js",
+    "index.html": "/calculator_Task2/index.html",
+    "main.a41d7c85.css.map": "/calculator_Task2/static/css/main.a41d7c85.css.map",
+    "main.d01b1101.js.map": "/calculator_Task2/static/js/main.d01b1101.js.map",
+    "787.a174f9e5.chunk.js.map": "/calculator_Task2/static/js/787.a174f9e5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a41d7c85.css",
+    "static/js/main.d01b1101.js"
+  ]
+}
