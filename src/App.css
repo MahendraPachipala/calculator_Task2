@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body{
+  background-image:linear-gradient(90deg,rgb(58, 58, 199),rgb(54, 178, 54));
+
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +39,47 @@
   to {
     transform: rotate(360deg);
   }
+}
+.result {
+  height: 250px;
+  background-color: #240a60;
+  width: 70%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.result p {
+  font-size: 30px;
+  margin: 5px;
+  text-align: right;
+  color: #fff;
+}
+
+.calculator-body {
+  max-width: 400px;
+  margin: auto;
+}
+
+.button {
+  display: block;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #000;
+  width: 70%;
+}
+
+button {
+  width: 25%;
+  height: 60px;
+  font-size: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+}
+.equal{
+  width: 100%;
+}
+.blue-button {
+  color: rgb(57, 12, 235);
 }
