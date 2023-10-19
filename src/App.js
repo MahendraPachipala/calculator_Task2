@@ -1,59 +1,101 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import ResultComponent from "./components/ResultComponent";
-import KeyPadComponent from "./components/KeypadComponent";
-import * as math from "mathjs";
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: "",
-    };
-  }
-
-  onClick = (button) => {
-    if (button === "=") {
-      this.calculate();
-    } else if (button === "CE") {
-      this.backspace();
+function Calculator() {
+  const [display, setDisplay] = useState("0");
+  const handleButtonClick = (value) => {
+    if (display === "0" || display === "Error") {
+      setDisplay(value);
     } else {
-      this.setState((prevState) => ({
-        result: prevState.result + button,
-      }));
+      setDisplay(display + value);
     }
   };
-
-  calculate = () => {
+  const handleCalculate = () => {
     try {
-      const result = math.evaluate(this.state.result);
-      if (isNaN(result)) {
-        this.setState({ result: "Invalid Input" });
-      } else {
-        this.setState({ result: result.toString() });
-      }
-    } catch (e) {
-      this.setState({ result: "Error" });
+      setDisplay(eval(display));
+    } catch (error) {
+      setDisplay("Error");
     }
   };
-
-  backspace = () => {
-    this.setState((prevState) => ({
-      result: prevState.result.slice(0, -1),
-    }));
+  const handleClear = () => {
+    setDisplay("0");
   };
-
-  render() {
-    return (
-      <div>
-        <div className="calculator-body">
-          <h1> Simple Calculator </h1>
-          <ResultComponent result={this.state.result} />
-          <KeyPadComponent onClick={this.onClick} />
-        </div>
+  return (
+    <div className="calculator">
+      <div className="calculator-screen"><p style={{paddingRight:"20px"}}>{display}</p></div>
+      <div style={{width:"300px"}} className="calculator-buttons">
+        <table>
+          <tr>
+            <td >
+              <table style={{width:"200px",marginLeft:"15px"}}>
+                <tr style={{height:"60px"}}>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "7")}>7</button>
+                  </td>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "8")}>8</button>
+                  </td>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "9")}>9</button>
+                  </td>
+                </tr>
+                <tr style={{height:"60px"}}>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "4")}>4</button>
+                  </td>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "5")}>5</button>
+                  </td>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "6")}>6</button>
+                  </td>
+                </tr>
+                <tr style={{height:"60px"}}>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "1")}>1</button>
+                  </td>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "2")}>2</button>
+                  </td>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "3")}>3</button>
+                  </td>
+                </tr>
+                <tr style={{height:"60px"}}>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, "0")}>0</button>
+                  </td>
+                  <td>
+                  <button onClick={handleButtonClick.bind(this, ".")}>.</button>
+                  </td>
+                  <td>
+                  <button onClick={handleCalculate} className="operator">=</button>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td >
+              <table >
+                <tr style={{height:"5px"}}>
+                <button style={{color: "#404090"}} onClick={handleClear} className="clear">⌫</button>
+                </tr>
+                <tr style={{height:"5px"}}>
+                <button style={{color: "#404090",fontSize:"27px"}} onClick={handleButtonClick.bind(this, "/")} >÷</button>
+                </tr>
+                <tr style={{height:"5px"}}>
+                <button style={{color: "#404090",fontSize:"25px"}} onClick={handleButtonClick.bind(this, "*")} >×</button>
+                </tr>
+                <tr style={{height:"5px"}}>
+                <button style={{color: "#404090",fontSize:"30px"}} onClick={handleButtonClick.bind(this, "-")} >-</button>
+                </tr>
+                <tr style={{height:"5px"}}>
+              <button style={{color: "#404090",fontSize:"25px"}} onClick={handleButtonClick.bind(this, "+")} >+</button>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default App;
+export default Calculator;
